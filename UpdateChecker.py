@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+from FileManager import FileManager
 
 class UpdateChecker:
     def __init__(self, GITHUB_REPO):
@@ -64,7 +65,9 @@ class UpdateChecker:
                     for chunk in r.iter_content(chunk_size=8192):
                         f.write(chunk)
 
+            file_manager = FileManager()
             print(f"Скачано: {file_path}")
+            file_manager.unzip_app(file_path)
             return file_path
 
         except Exception as e:

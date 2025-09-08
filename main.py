@@ -15,17 +15,22 @@ def start():
     file_manager = FileManager()
     current_version = update_checker.check_current_version()
     is_app_exist = file_manager.check_app()
+    update_checker.fetch_latest_version()
+    is_update_available = update_checker.is_update_available()
 
     # Если нет скачанного репозитория или конфиг невалиден — обновляем
     if current_version == "0.0.0" or not is_app_exist:
         update(update_checker)
         current_version = update_checker.check_current_version()
+        update_checker.fetch_latest_version()
+        is_update_available = update_checker.is_update_available()
 
-# TODO: Сделать вывод модального окна обновления
-    # if update_checker.is_update_available():
-
-
-    app = App(lambda: update(update_checker), current_version)
+    app = App(
+        update_method=lambda: update(update_checker),
+        current_version=current_version,
+        is_update_available=is_update_available,
+        zapret_path=file_manager.get_zapret_path()
+    )
     app.mainloop()
 
 if __name__ == "__main__":

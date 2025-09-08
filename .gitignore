@@ -24,8 +24,6 @@ var/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -133,4 +131,23 @@ dmypy.json
 
 # VS Code settings
 .vscode/
+
+# Запретить папку с внешним репозиторием и временные файлы
 zapret/
+*.zip
+*.exe
+*.bat
+*.tmp
+*.log
+*.bak
+*.old
+*.swp
+*.swo
+
+# Конфиг пользователя, если не нужен в репозитории
+config.json
+
+# Кэш и временные файлы ОС
+Thumbs.db
+.DS_Store
+desktop.ini
