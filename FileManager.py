@@ -1,21 +1,10 @@
 import os
 
 
-class FileManager():
-    
-    def __init__(self):
-        isExist = self.check_app()
+class FileManager:
+    def __init__(self, default_path="./zapret"):
+        self.default_path = default_path
 
-        if isExist:
-            for file in os.listdir(self.default_path):
-                print(file)
+    def check_app(self):
+        return os.path.exists(self.default_path) and len(os.listdir(self.default_path)) > 0
 
-
-
-    def check_app(self, default_path="./zapret"):
-        if os.path.exists(default_path):
-            self.default_path = default_path
-            return True
-        else: 
-            return False
-        
